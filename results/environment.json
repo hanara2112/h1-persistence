@@ -1,0 +1,47 @@
+{
+  "python": "3.11.17",
+  "platform": "macOS-26.2-arm64-arm-64bit",
+  "machine": "arm64",
+  "packages": {
+    "numpy": "2.4.6",
+    "pandas": "3.1.0",
+    "matplotlib": "3.11.2",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.9.1",
+    "ripser": "0.6.15",
+    "persim": "0.4.1"
+  },
+  "settings": {
+    "noise_levels": [
+      0.0,
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "n_points": 100,
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51
+    ],
+    "example_seed": 42,
+    "sample_sizes": [
+      30,
+      100,
+      300
+    ],
+    "benchmark_noise": 0.1,
+    "runtime_repeats": 3,
+    "maxdim": 1,
+    "metric": "euclidean",
+    "coeff": 2
+  }
+}
