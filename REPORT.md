@@ -12,7 +12,8 @@ As this threshold grows, $H_0$ tracks components and $H_1$ tracks loops.
 A feature born at $b$ and dying at $d$ has persistence $d-b$ [1, 2].
 
 We record the two longest intervals, their difference (dominance gap), and
-interval count—not the number of significant holes. Bottleneck distance
+the number of intervals. Many intervals may come from small sampling gaps.
+Bottleneck distance
 minimizes the largest $L_\infty$ matching cost, allowing diagonal matches [4].
 Each noisy diagram is compared with its own clean reference.
 
@@ -69,7 +70,7 @@ accuracy.
 Circle persistence rises from noise 0.5 to 1.0 in 10/10 trials, with mean change
 +0.090. After dividing by RMS radius, it rises in only 3/10 trials, with mean
 relative change −0.016. Spatial spread may contribute to the rebound, but this
-check does not establish its cause or show that the original loop survived.
+does not explain the increase fully or show that the original loop survived.
 
 Mean circle bottleneck distance reaches 0.711 at noise 0.3–0.5, then falls to
 0.667 at noise 1.0. A feature can match the diagonal at half its persistence
@@ -81,12 +82,12 @@ references, so their curve heights do not directly rank robustness.
 
 ### Sampling density and runtime
 
-After one warm-up, we take the median of three timed Ripser calls per cloud,
-including distance calculation and H0/H1 but excluding generation and plotting.
-Samples at different sizes are not nested. At noise 0.1, increasing circle size
+We timed Ripser three times for each point cloud and used the median.
+The table shows the mean and SD across seeds; data generation and plotting
+were not timed. At noise 0.1, increasing circle size
 from 30 to 300 raises mean persistence from 0.824 to 1.222 and lowers SD from
-0.204 to 0.056; disk means stay between 0.162 and 0.195. Runtime increases,
-but three sizes cannot establish a complexity law.
+0.204 to 0.056; disk means stay between 0.162 and 0.195. Larger samples took
+longer to process, but three sizes are too few to determine how runtime scales.
 
 | Points | Circle time, ms ± SD | Disk time, ms ± SD |
 |---|---|---|
@@ -96,22 +97,17 @@ but three sizes cannot establish a complexity law.
 
 ![Runtime and persistence by sample size](results/05_density_runtime.png)
 
-Times are means of per-cloud medians from the saved run: Python 3.11.17,
-macOS 26.2, arm64. Reruns will have different timings; package versions and
-settings are in [environment.json](results/environment.json).
-
 ## Evaluation and conclusion
 
-Ripser's one-call calculation and Persim's compatible plotting and distance
-functions make exploration straightforward. Interpretation remains the main
-limitation: raw persistence depends on scale, and neither tool establishes
-feature significance or survival of the original loop.
+Ripser computes the diagrams from a point array, and Persim plots and compares
+them directly. The harder part is interpreting the result: persistence depends
+on scale, and a long interval alone does not show that the original loop survived.
 
 The shapes separate clearly at low noise, but much less at noise 1.0; the
-rebound does not show recovery. Evidence covers only two synthetic shapes,
-Gaussian noise, and small clouds, without memory or competitor benchmarks.
-Next steps are to locate the measured features, test detection thresholds on
-held-out samples, and evaluate other noise patterns and larger clouds,
+rebound does not show recovery. We tested only two synthetic shapes,
+Gaussian noise, and small clouds. We did not measure memory use or compare
+other tools. Further work could locate the loops behind the intervals, test
+detection thresholds on new samples, and examine other noise patterns and larger clouds,
 including Ripser's subsampling option [3].
 
 ## References

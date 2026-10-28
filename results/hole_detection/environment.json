@@ -1,0 +1,40 @@
+{
+  "python": "3.11.17",
+  "platform": "macOS-26.2-arm64-arm-64bit",
+  "packages": {
+    "numpy": "2.4.6",
+    "pandas": "3.1.0",
+    "matplotlib": "3.11.2",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.9.1",
+    "ripser": "0.6.15",
+    "persim": "0.4.1"
+  },
+  "settings": {
+    "sample_sizes": [
+      30,
+      100,
+      300
+    ],
+    "noise_levels": [
+      0.0,
+      0.1,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "n_calibration": 199,
+    "n_test_per_shape": 200,
+    "alpha": 0.05,
+    "first_seed": 424242,
+    "last_seed": 433226,
+    "seed_assignment": "Unique consecutive seeds: size, noise, calibration disk, test disk, test circle",
+    "score": "Longest finite H1 persistence, zero if empty",
+    "rule": "score > sorted_null[ceil((m+1)*(1-alpha))-1]",
+    "maxdim": 1,
+    "metric": "euclidean",
+    "coeff": 2,
+    "distance_cutoff": null
+  },
+  "elapsed_seconds": 65.76193108269945
+}
